@@ -1,0 +1,39 @@
+<!doctype>
+<html>
+<head>
+<script type='text/javascript'>
+web3.eth.defaultAccount = web3.eth.accounts[0];
+function getVote() {
+	var param = document.getElementById('query').value;
+	var voteSelection = contracts['Election'].contract.getVote();
+	document.getElementById('queryres').innerText = voteSelection;
+}
+
+function vote(choice) {
+	var res = contracts['Election'].contract.vote(choice);
+}
+	
+window.onload = function() {
+	document.getElementById('voteBtn').addEventListener('click', function() {
+		alert('click');
+		var choice = document.getElementById('choice').value;
+		vote(choice);
+	});
+};
+
+</script>
+</head>
+<body bgcolor='#E6E6FA'>
+	<h3>Election</h3>
+<div>
+Vote:
+	<input type='number' id='choice'>
+	<button id='voteBtn'>Vote</button>
+</div>
+<div>
+Check my vote:
+	<input value='Check my Vote' type='button' id='query' onclick='getVote()' />
+	<div id='queryres'></div>
+</div>
+</body>
+</html>
