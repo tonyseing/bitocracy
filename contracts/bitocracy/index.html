@@ -3,8 +3,11 @@
 <head>
 <script type='text/javascript'>
 web3.eth.defaultAccount = web3.eth.accounts[0];
+function registerVoter(voter_address) {
+	
+}
+	
 function getVote() {
-	var param = document.getElementById('query').value;
 	var voteSelection = contracts['Election'].contract.getVote();
 	document.getElementById('queryresult').innerText = voteSelection;
 }
@@ -18,12 +21,23 @@ window.onload = function() {
 		var choice = document.getElementById('choice').value;
 		vote(choice);
 	});
+	
+	document.getElementById('checkVoteBtn').addEventListener('click', function() {
+		getVote();
+	});
 };
 
 </script>
 </head>
 <body bgcolor='#E6E6FA'>
 	<h3>Election</h3>
+	<!--
+<div>
+What is your vote wallet?
+	<input type='number' id='voterId'>
+	<button id='addressBtn'>Login</button>
+</div>
+	-->
 <div>
 Vote:
 	<input type='number' id='choice'>
@@ -31,7 +45,7 @@ Vote:
 </div>
 <div>
 Check my vote:
-	<input value='Check my Vote' type='button' id='query' />
+	<input value='Check my Vote' type='button' id='checkVoteBtn' />
 	<div id='queryresult'></div>
 </div>
 </body>

@@ -2,9 +2,15 @@
 contract Election
 {
 	uint choice;
+	
 	mapping (address => uint) candidateTallies;
 	mapping (uint => address) candidateIndex;
 	uint candidateCount;
+	
+	struct voter {
+		uint id;
+		address voterAddress;
+	}
 	
 	struct candidate {
 		uint id;
@@ -18,6 +24,10 @@ contract Election
 	
 	function Election(uint v) {
 		choice = v;
+	}
+	
+	function registerVoter(address voter_address) {
+		
 	}
 	
 	function registerCandidate() {
